@@ -26,7 +26,7 @@
                 "WebConsole\\Extension\\LaravelServiceProvider"
             ],
             "aliases": {
-                "LTTools": "WebConsole\\Extension\\Facades\\WebConsole"
+                "WebConsole": "WebConsole\\Extension\\Facades\\WebConsole"
             }
         }
     }
