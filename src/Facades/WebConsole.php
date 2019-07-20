@@ -11,7 +11,7 @@ class WebConsole extends  Facade
 {
     /**
      * Get the registered name of the component.
-     *
+     * @method static void init();
      * @return string
      */
     protected static function getFacadeAccessor()

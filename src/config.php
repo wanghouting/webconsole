@@ -3,30 +3,59 @@
 return [
     /*
     |--------------------------------------------------------------------------
-    | 用户名
+    |  Disable login (don't ask for credentials, be careful)
+    |  Example:  true;
     |--------------------------------------------------------------------------
     */
-    'user'  =>  env("WEB_CONSOLE_USER",'ltwl'),
+    'no_login'  =>  env("WEB_CONSOLE_NO_LOGIN",false),
     /*
     |--------------------------------------------------------------------------
-    | 密码
+    | Multi-user credentials
+    | Example:  ['user1' => 'password1', 'user2' => 'password2'];
     |--------------------------------------------------------------------------
     */
-    'password'  =>  env("WEB_CONSOLE_PASSWORD",'ltwl123456'),
+    'account'  => [
+        env("WEB_CONSOLE_DEFAULT_USER",'admin') =>  env("WEB_CONSOLE_DEFAULT_PASSWORD",'admin')
+    ],
 
     /*
     |--------------------------------------------------------------------------
-    | 路由前缀
+    | Password hash algorithm (password must be hashed)
+    | Example: 'md5';
+    |          'sha256';
     |--------------------------------------------------------------------------
     */
-    'route_prefix' => env("WEB_CONSOLE_ROUTE_PREFIX",'admin/tools'),
+    'password_hash_algorithm'  =>  env("WEB_CONSOLE_PASSWORD_HASH_ALGORITHM",''),
+
     /*
     |--------------------------------------------------------------------------
-    | 路由名称
+    | Home directory
+    | Example:  '/tmp';
+    |--------------------------------------------------------------------------
+    */
+    'home_dir'  =>  env("WEB_CONSOLE_HOME_DIR",'~'),
+    /*
+    |--------------------------------------------------------------------------
+    | route prefix
+    |--------------------------------------------------------------------------
+    */
+    'route_prefix' => env("WEB_CONSOLE_ROUTE_PREFIX",'admin'),
+    /*
+    |--------------------------------------------------------------------------
+    | route middleware
+    |--------------------------------------------------------------------------
+    */
+    'route_middleware' => [
+
+    ],
+    /*
+    |--------------------------------------------------------------------------
+    | route name
     |--------------------------------------------------------------------------
     */
 
     "route_name" => env("WEB_CONSOLE_ROUTE_PATH",'console'),
+
 
 
 

@@ -10,7 +10,7 @@ use Illuminate\Routing\Router;
 Route::group([
     'namespace' => "WebConsole\\Extension\\Controllers",
     'prefix' => config('webconsole.route_prefix'),
-    'middleware' => ['web', 'admin']
+    'middleware' =>  config('webconsole.route_middleware'),
 ], function (Router $router) {
-    $router->get(config('webconsole.route_name'), 'WebConsoleController@index');
+    $router->match(['get','post'],config('webconsole.route_name'), 'WebConsoleController@index');
 });

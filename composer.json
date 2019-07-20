@@ -18,6 +18,7 @@
             "WebConsole\\Extension\\": "src/"
         },
         "files": [
+            "src/helpers.php"
         ]
     },
     "extra": {

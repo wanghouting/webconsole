@@ -11,13 +11,22 @@ use Illuminate\Foundation\Application as LaravelApplication;
 class LaravelServiceProvider extends  ServiceProvider
 {
 
-     /**
+    /**
      * Booting the package.
      */
     public function boot()
     {
+        if (method_exists($this, 'loadViewsFrom')) {
+            $this->loadViewsFrom(__DIR__ . '/Resources/views', 'webconsole');
+        }
 
         $this->loadRoutesFrom(__DIR__.'/Route/routes.php');
+        if (method_exists($this, 'publishes')) {
+            $this->publishes([
+                __DIR__.'/Resources/views' => base_path('/resources/views/vendor/webconsole'),
+            ], 'views');
+            $this->setupConfig();
+        }
     }
 
 
