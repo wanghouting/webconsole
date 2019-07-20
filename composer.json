@@ -1,0 +1,34 @@
+{
+    "name": "wanghouting/web-console",
+    "description": "a web-console  extension for php ",
+    "type": "tools",
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.0.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "wanghouting",
+            "email": "wanghouting@163.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "WebConsole\\Extension\\": "src/"
+        },
+        "files": [
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "WebConsole\\Extension\\LaravelServiceProvider"
+            ],
+            "aliases": {
+                "LTTools": "WebConsole\\Extension\\Facades\\WebConsole"
+            }
+        }
+    }
+}
+
