@@ -17,7 +17,7 @@ class WebConsoleController extends Controller
 {
 
     public function index() {
-        WebConsole::init();
+        return WebConsole::init();
     }
 
 }

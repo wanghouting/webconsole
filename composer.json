@@ -1,6 +1,6 @@
 {
     "name": "wanghouting/web-console",
-    "description": "a web-console  extension for php ",
+    "description": "a web-console  extension for laravel based on Web Console [http://web-console.org/] ",
     "type": "tools",
     "minimum-stability": "dev",
     "require": {

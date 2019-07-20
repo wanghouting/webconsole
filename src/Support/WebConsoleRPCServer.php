@@ -27,15 +27,14 @@ class WebConsoleRPCServer extends BaseJsonRpcServer {
                 if ($password_hash_algorithm) $password = wc_get_hash($password_hash_algorithm, $password);
 
                 if (wc_is_equal_strings($password, $account[$user]))
-                    return $user . ':' . get_hash('sha256', $password);
+                    return $user . ':' . wc_get_hash('sha256', $password);
             }
         }
         throw new Exception("Incorrect user or password");
     }
 
     private function authenticate_token($token) {
-        global $NO_LOGIN;
-        if ($NO_LOGIN) return true;
+        if (config('webconsole.no_login')) return true;
 
         $token = trim((string) $token);
         $token_parts = explode(':', $token, 2);
@@ -45,10 +44,9 @@ class WebConsoleRPCServer extends BaseJsonRpcServer {
             $password_hash = trim((string) $token_parts[1]);
 
             if ($user && $password_hash) {
-                global $ACCOUNTS;
-
-                if (isset($ACCOUNTS[$user]) && !wc_is_empty_string($ACCOUNTS[$user])) {
-                    $real_password_hash = wc_get_hash('sha256', $ACCOUNTS[$user]);
+                $account = config('webconsole.account');
+                if (isset($account[$user]) && !wc_is_empty_string($account[$user])) {
+                    $real_password_hash = wc_get_hash('sha256', $account[$user]);
                     if (wc_is_equal_strings($password_hash, $real_password_hash)) return $user;
                 }
             }
@@ -58,13 +56,12 @@ class WebConsoleRPCServer extends BaseJsonRpcServer {
     }
 
     private function get_home_directory($user) {
-        global $HOME_DIRECTORY;
-
-        if (is_string($HOME_DIRECTORY)) {
-            if (!wc_is_empty_string($HOME_DIRECTORY)) return $HOME_DIRECTORY;
+        $home_dir = config('webconsole.home_dir');
+        if (is_string($home_dir)) {
+            if (!wc_is_empty_string($home_dir)) return $home_dir;
         }
-        else if (is_string($user) && !wc_is_empty_string($user) && isset($HOME_DIRECTORY[$user]) && !wc_is_empty_string($HOME_DIRECTORY[$user]))
-            return $HOME_DIRECTORY[$user];
+        else if (is_string($user) && !wc_is_empty_string($user) && isset($home_dir[$user]) && !wc_is_empty_string($home_dir[$user]))
+            return $home_dir[$user];
 
         return getcwd();
     }
