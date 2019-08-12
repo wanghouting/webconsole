@@ -29,7 +29,7 @@ if(!function_exists('wc_execute_command')){
             2 => array('pipe', 'w')  // STDERR
         );
 
-        $process = proc_open($command . ' 2>&1', $descriptors, $pipes);
+        $process = proc_open($command . ' 2>&1', $descriptors, $pipes,getcwd());
         if (!is_resource($process)) die("Can't execute command.");
 
         // Nothing to push to STDIN
